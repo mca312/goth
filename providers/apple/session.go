@@ -78,10 +78,10 @@ func (s *Session) Authorize(provider goth.Provider, params goth.Params) (string,
 			kid := t.Header["kid"].(string)
 			claims := t.Claims.(*IDTokenClaims)
 			vErr := new(jwt.ValidationError)
-			if !claims.VerifyAudience(p.clientId, true) {
-				vErr.Inner = fmt.Errorf("audience is incorrect")
-				vErr.Errors |= jwt.ValidationErrorAudience
-			}
+			// if !claims.VerifyAudience(p.clientId, true) {
+			// 	vErr.Inner = fmt.Errorf("audience is incorrect")
+			// 	vErr.Errors |= jwt.ValidationErrorAudience
+			// }
 			if !claims.VerifyIssuer(AppleAudOrIss, true) {
 				vErr.Inner = fmt.Errorf("issuer is incorrect")
 				vErr.Errors |= jwt.ValidationErrorIssuer
